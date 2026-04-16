@@ -131,25 +131,25 @@ export function UsersPageView({
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-12">
-        {listError && (
-          <div
-            className={`mb-8 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-800 ${
-              mounted ? "animate-flow-fade-up-4" : "opacity-0"
-            }`}
-            role="alert"
-          >
-            <p className="font-semibold">Could not load users</p>
-            <p className="mt-1 text-red-700/90">{listError}</p>
-          </div>
-        )}
-
-        {!listError && me && (
+        {me && (
           <div className={mounted ? "animate-flow-fade-up-4" : "opacity-0"}>
             <ProfileHighlightCard user={me} />
           </div>
         )}
 
-        {!listError && total === 0 && !me ? (
+        {listError && (
+          <div
+            className={`mb-8 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-800 ${
+              mounted ? "animate-flow-fade-up-4" : "opacity-0"
+            }`}
+            role="alert"
+          >
+            <p className="font-semibold">Could not load the full directory</p>
+            <p className="mt-1 text-amber-700/90">{listError}</p>
+          </div>
+        )}
+
+        {!listError && total === 0 && (
           <div
             className={`text-center py-24 text-stone-400 ${
               mounted ? "animate-flow-fade-up-4" : "opacity-0"
@@ -161,9 +161,9 @@ export function UsersPageView({
               Sign up or sync a Clerk webhook — the list will fill in here.
             </p>
           </div>
-        ) : null}
+        )}
 
-        {!listError && me && listUsers.length === 0 && total > 0 ? (
+        {!listError && me && listUsers.length === 0 && total > 0 && (
           <p
             className={`text-center text-sm text-stone-500 py-6 ${
               mounted ? "animate-flow-fade-up-4" : "opacity-0"
@@ -171,7 +171,7 @@ export function UsersPageView({
           >
             You&apos;re the only profile in the directory right now.
           </p>
-        ) : null}
+        )}
 
         {!listError && listUsers.length > 0 ? (
           <ul className="space-y-3">

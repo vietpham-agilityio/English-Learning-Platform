@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* ── Flow page (checkout success, 404) — keyframes + utilities ───────────── */
+
+@keyframes flow-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes flow-hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes flow-ring-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes flow-particle-pop {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: var(--tx) scale(0);
+  }
+}
+
+@keyframes flow-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --animate-flow-hero-in: flow-hero-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-flow-fade-up-1: flow-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+  --animate-flow-fade-up-2: flow-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
+  --animate-flow-fade-up-3: flow-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+  --animate-flow-fade-up-4: flow-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.52s both;
+  --animate-flow-fade-up-5: flow-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.64s both;
+  --animate-flow-pill-1: flow-fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.72s both;
+  --animate-flow-pill-2: flow-fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.84s both;
+  --animate-flow-pill-3: flow-fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.96s both;
+}
+
+/** Staggered list rows (category page). */
+/** Admin course modals — enter animation (backdrop + panel). */
+@keyframes admin-modal-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes admin-modal-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@utility admin-modal-backdrop-in {
+  animation: admin-modal-backdrop-in 0.22s ease-out both;
+}
+
+@utility admin-modal-panel-in {
+  animation: admin-modal-panel-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility flow-row-in {
+  animation: flow-fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility flow-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 9999px;
+  border: 2px solid #059669;
+  animation: flow-ring-pulse 1s ease-out forwards;
+}
+
+@utility flow-ring-delayed {
+  animation-delay: 0.2s;
+}
+
+@utility flow-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  top: calc(50% - 3px);
+  left: calc(50% - 3px);
+  animation: flow-particle-pop 0.65s ease-out forwards;
+}
+
+@utility flow-check-path {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  opacity: 0;
+  transition:
+    stroke-dashoffset 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.15s ease;
+}
+
+@utility flow-check-path-drawn {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}
+
+@utility flow-search-path {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  opacity: 0;
+  transition:
+    stroke-dashoffset 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.15s ease;
+}
+
+@utility flow-search-path-drawn {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}
+
+@utility flow-cancel-path {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  opacity: 0;
+  transition:
+    stroke-dashoffset 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.15s ease;
+}
+
+@utility flow-cancel-path-drawn {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}
+
+@utility flow-ring-cancel {
+  position: absolute;
+  inset: -8px;
+  border-radius: 9999px;
+  border: 2px solid #ef4444;
+  animation: flow-ring-pulse 1s ease-out forwards;
+}
+
+@utility flow-ring-cancel-delayed {
+  animation-delay: 0.2s;
+}
+
+@utility flow-shimmer-btn {
+  background: linear-gradient(
+    90deg,
+    #059669 0%,
+    #059669 35%,
+    #34d399 50%,
+    #059669 65%,
+    #059669 100%
+  );
+  background-size: 200% auto;
+  animation: flow-shimmer 2.2s linear 1.4s infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
